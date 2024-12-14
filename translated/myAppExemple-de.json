@@ -1,0 +1,18 @@
+{
+    "Languages": {
+        "en": "Englisch",
+        "pt": "Portugiesisch",
+        "es": "Spanisch",
+        "it": "Italienisch",
+        "fr": "Französisch",
+        "de": "Deutsch",
+        "ja": "japanisch",
+        "zh": "chinesisch",
+        "ru": "Russisch",
+        "nl": "Niederländisch",
+        "pl": "Polieren"
+    },
+    "Main": {
+        "Title": "Dies ist ein Beispielübersetzungstest"
+    }
+}

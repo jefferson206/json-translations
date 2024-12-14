@@ -1,0 +1,18 @@
+{
+    "Languages": {
+        "en": "Engels",
+        "pt": "Portugees",
+        "es": "Spaans",
+        "it": "Italiaans",
+        "fr": "Frans",
+        "de": "Duits",
+        "ja": "Japanse",
+        "zh": "Chinese",
+        "ru": "Russisch",
+        "nl": "Nederlands",
+        "pl": "Pools"
+    },
+    "Main": {
+        "Title": "Dit is een voorbeeld van een vertaaltest"
+    }
+}

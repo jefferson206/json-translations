@@ -1,0 +1,18 @@
+{
+    "Languages": {
+        "en": "Anglais",
+        "pt": "portugais",
+        "es": "Espagnol",
+        "it": "italien",
+        "fr": "Français",
+        "de": "Allemand",
+        "ja": "japonais",
+        "zh": "Chinois",
+        "ru": "russe",
+        "nl": "Néerlandais",
+        "pl": "polonais"
+    },
+    "Main": {
+        "Title": "Ceci est un exemple de test de traduction"
+    }
+}
