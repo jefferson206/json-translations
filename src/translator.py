@@ -1,9 +1,10 @@
 import json
 from googletrans import Translator
 from deep_translator import GoogleTranslator
+from .config import ORIGIN_LANGUAGE
 
 class TranslatorService:
-    def __init__(self, src_lang='en'):
+    def __init__(self, src_lang=f'{ORIGIN_LANGUAGE}'):
         self.src_lang = src_lang
         self.translator = Translator()
 
@@ -17,7 +18,7 @@ class TranslatorService:
                     translated_dict[key] = value
                 else:
                     try:
-                        translated_value = GoogleTranslator(source='en', target=target_lang).translate(value)
+                        translated_value = GoogleTranslator(source=f'{ORIGIN_LANGUAGE}', target=target_lang).translate(value)
                         translated_dict[key] = translated_value
                     except Exception as e:
                         print(f"Error translating '{value}': {e}")
@@ -31,8 +32,9 @@ class TranslatorService:
             data = json.load(file)
         
         translated_data = self.translate_dict(data, target_lang)
-        
+        folder_name = output_file.split("\\")[0]
+        file_name = output_file.split("\\")[1]
         with open(output_file, 'w', encoding='utf-8') as file:
             json.dump(translated_data, file, ensure_ascii=False, indent=4)
 
-        print(f"Translated file saved as {output_file}")
+        print(f"Translated file saved in {folder_name} folder as {file_name}")
