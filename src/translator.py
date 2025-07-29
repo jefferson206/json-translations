@@ -9,23 +9,44 @@ class TranslatorService:
         self.translator = Translator()
 
     def translate_dict(self, d, target_lang):
-        translated_dict = {}
+        translated = {}
+
         for key, value in d.items():
             if isinstance(value, dict):
-                translated_dict[key] = self.translate_dict(value, target_lang)
+                translated[key] = self.translate_dict(value, target_lang)
+            elif isinstance(value, list):
+                translated_list = []
+                for item in value:
+                    if isinstance(item, str):
+                        if not item.strip():
+                            translated_list.append(item)
+                        else:
+                            try:
+                                translated_item = GoogleTranslator(source=self.src_lang, target=target_lang).translate(item)
+                                translated_list.append(translated_item)
+                            except Exception as e:
+                                print(f"Error translating '{item}': {e}")
+                                translated_list.append(item)
+                    elif isinstance(item, dict):
+                        translated_list.append(self.translate_dict(item, target_lang))
+                    else:
+                        translated_list.append(item)
+                translated[key] = translated_list
             elif isinstance(value, str):
                 if not value.strip():
-                    translated_dict[key] = value
+                    translated[key] = value
                 else:
                     try:
-                        translated_value = GoogleTranslator(source=f'{ORIGIN_LANGUAGE}', target=target_lang).translate(value)
-                        translated_dict[key] = translated_value
+                        translated_value = GoogleTranslator(source=self.src_lang, target=target_lang).translate(value)
+                        translated[key] = translated_value
                     except Exception as e:
                         print(f"Error translating '{value}': {e}")
-                        translated_dict[key] = value
+                        translated[key] = value
             else:
-                translated_dict[key] = value
-        return translated_dict
+                translated[key] = value
+
+        return translated
+
 
     def translate_file(self, input_file, target_lang, output_file):
         with open(input_file, 'r', encoding='utf-8') as file:
